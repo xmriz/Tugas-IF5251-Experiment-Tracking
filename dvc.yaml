@@ -52,3 +52,10 @@ stages:
           cache: false
       - metrics.csv:
           cache: false
+
+plots:
+- metrics.csv:
+    template: simple
+    x: model
+    y: accuracy
+    title: "RF vs NN Accuracy"
