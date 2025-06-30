@@ -1,0 +1,52 @@
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+      - src/preprocess.py
+      - data/raw/adult.csv
+      - params.yaml
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+  train_rf:
+    cmd: python src/train.py --stage train_rf
+    deps:
+      - src/train.py
+      - data/processed/train.csv
+      - params.yaml
+    outs:
+      - models/rf_model.pkl
+    metrics:
+      - metrics_rf.json:
+          cache: false
+    params:
+      - rf.n_estimators
+      - rf.max_depth
+
+  train_nn:
+    cmd: python src/train.py --stage train_nn
+    deps:
+      - src/train.py
+      - data/processed/train.csv
+      - params.yaml
+    outs:
+      - models/nn_model.h5
+    metrics:
+      - metrics_nn.json:
+          cache: false
+    params:
+      - nn.learning_rate
+      - nn.batch_size
+      - nn.epochs
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - models/rf_model.pkl
+      - models/nn_model.h5
+      - data/processed/test.csv
+    metrics:
+      - metrics.json:
+          cache: false
