@@ -1,0 +1,107 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - path: data/raw/adult.csv
+      hash: md5
+      md5: 46a9b0988c83b02d27640bf9ced3ab95
+      size: 5326368
+    - path: params.yaml
+      hash: md5
+      md5: cf994b351ac22a697cad7008f8043a4f
+      size: 172
+    - path: src/preprocess.py
+      hash: md5
+      md5: ab94a1301ab2dbf0f3a8ce9498e0e9ca
+      size: 3293
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: b03af397593e247ff6414e05c80faefb
+      size: 4364446
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 54adc37348bf2ee280b61664265510e3
+      size: 17449542
+  train_rf:
+    cmd: python src/train.py --stage train_rf
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 54adc37348bf2ee280b61664265510e3
+      size: 17449542
+    - path: params.yaml
+      hash: md5
+      md5: cf994b351ac22a697cad7008f8043a4f
+      size: 172
+    - path: src/train.py
+      hash: md5
+      md5: c8bf4232f47344d46f8d0e9a8885e1ff
+      size: 4878
+    params:
+      params.yaml:
+        rf.max_depth: 10
+        rf.n_estimators: 100
+    outs:
+    - path: metrics_rf.json
+      hash: md5
+      md5: e9aed650236a67c3e487ada548de833c
+      size: 46
+    - path: models/rf_model.pkl
+      hash: md5
+      md5: 5b690400cc12fcee177e79b7e9ccebfd
+      size: 4684704
+  train_nn:
+    cmd: python src/train.py --stage train_nn
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 54adc37348bf2ee280b61664265510e3
+      size: 17449542
+    - path: params.yaml
+      hash: md5
+      md5: cf994b351ac22a697cad7008f8043a4f
+      size: 172
+    - path: src/train.py
+      hash: md5
+      md5: c8bf4232f47344d46f8d0e9a8885e1ff
+      size: 4878
+    params:
+      params.yaml:
+        nn.batch_size: 32
+        nn.epochs: 10
+        nn.learning_rate: 0.001
+    outs:
+    - path: metrics_nn.json
+      hash: md5
+      md5: 1372b0c1fa326ee9d942c27a3f7de65e
+      size: 83
+    - path: models/nn_model.h5
+      hash: md5
+      md5: 12620b9b2ec6f672b92de0ecea0ebe00
+      size: 106960
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: b03af397593e247ff6414e05c80faefb
+      size: 4364446
+    - path: models/nn_model.h5
+      hash: md5
+      md5: 12620b9b2ec6f672b92de0ecea0ebe00
+      size: 106960
+    - path: models/rf_model.pkl
+      hash: md5
+      md5: 5b690400cc12fcee177e79b7e9ccebfd
+      size: 4684704
+    - path: src/evaluate.py
+      hash: md5
+      md5: b863743d2e239e48c10fe3f32c6cd976
+      size: 1626
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 55108d69282e3444f9f3627c23c0683f
+      size: 295
