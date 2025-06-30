@@ -1,0 +1,4 @@
+[core]
+    remote = storage
+['remote "storage"']
+    url = D:\Coding\git-repo\github\tubes-ai-produksi\dvc_remote
