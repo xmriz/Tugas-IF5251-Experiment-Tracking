@@ -33,7 +33,7 @@ def preprocess(input_path, output_dir, test_size, random_state):
     ])
     cat_pipe = Pipeline([
         ("imputer", SimpleImputer(strategy="constant", fill_value="Unknown")),
-        ("onehot", OneHotEncoder(handle_unknown="ignore", sparse=False))
+        ("onehot", OneHotEncoder(handle_unknown="ignore", sparse_output=False))
     ])
     preprocessor = ColumnTransformer([
         ("num", num_pipe, numeric_feats),
