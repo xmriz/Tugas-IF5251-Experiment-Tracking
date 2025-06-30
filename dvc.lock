@@ -75,11 +75,11 @@ stages:
     outs:
     - path: metrics_nn.json
       hash: md5
-      md5: 1372b0c1fa326ee9d942c27a3f7de65e
-      size: 83
+      md5: 95f838e13932217133b0be7034d76ced
+      size: 85
     - path: models/nn_model.h5
       hash: md5
-      md5: 12620b9b2ec6f672b92de0ecea0ebe00
+      md5: 053493da2ab34858a23e2509e009da80
       size: 106960
   evaluate:
     cmd: python src/evaluate.py
@@ -90,7 +90,7 @@ stages:
       size: 4364446
     - path: models/nn_model.h5
       hash: md5
-      md5: 12620b9b2ec6f672b92de0ecea0ebe00
+      md5: 053493da2ab34858a23e2509e009da80
       size: 106960
     - path: models/rf_model.pkl
       hash: md5
@@ -101,11 +101,7 @@ stages:
       md5: b67bc4feffdb1197e4f6386e238b38b3
       size: 2162
     outs:
-    - path: metrics.csv
-      hash: md5
-      md5: eb4dc3b84779554bd75f1de8458e9bfd
-      size: 182
     - path: metrics.json
       hash: md5
-      md5: 55108d69282e3444f9f3627c23c0683f
-      size: 295
+      md5: db23e0f0afd2af2b457e277fd4fdc005
+      size: 308
