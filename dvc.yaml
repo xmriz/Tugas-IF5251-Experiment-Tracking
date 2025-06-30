@@ -58,4 +58,5 @@ plots:
     template: simple
     x: model
     y: accuracy
+    kind: bar
     title: "RF vs NN Accuracy"
