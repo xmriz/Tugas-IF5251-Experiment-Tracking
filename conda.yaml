@@ -1,0 +1,27 @@
+name: experiment-tracking
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - python=3.9
+  - pip
+
+  # Paket Conda
+  - numpy>=1.24
+  - pandas>=2.0
+  - scikit-learn>=1.2
+
+  # TensorFlow via Conda-Forge
+  - tensorflow>=2.12
+
+  # pip packages
+  - pip:
+    - mlflow>=2.4
+    - tensorboard>=2.12
+    - dvc>=2.30
+    - boto3>=1.26        # jika butuh remote S3
+    - azure-storage-blob # jika butuh remote Azure
+    - gcsfs>=2024.5      # jika butuh remote GCS
+    - pyyaml>=6.0
+    - requests>=2.31

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>DVC Plot</title>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
+    
+    <style>
+        table {
+            border-spacing: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id = "metrics_csv">
+        <script type = "text/javascript">
+            var spec = {"$schema": "https://vega.github.io/schema/vega-lite/v5.json", "data": {"values": [{"model": "rf", "accuracy": "0.8613983007472618", "precision": "0.7899628252788105", "recall": "0.5567685589519651", "f1": "0.6531762295081968", "rev": "workspace"}, {"model": "nn", "accuracy": "0.23789538335551233", "precision": "0.2352336928608115", "recall": "1.0", "f1": "0.3808731808731809", "rev": "workspace"}]}, "title": {"text": "RF vs NN Accuracy", "anchor": "middle"}, "params": [{"name": "grid", "select": "interval", "bind": "scales"}], "width": 300, "height": 300, "mark": {"type": "line", "tooltip": {"content": "data"}}, "encoding": {"x": {"field": "model", "type": "quantitative", "title": "model"}, "y": {"field": "accuracy", "type": "quantitative", "title": "accuracy", "scale": {"zero": false}}, "color": {"field": "rev", "scale": {"domain": ["workspace"], "range": ["#945dd6"]}}, "strokeDash": {}, "tooltip": [{"field": "rev"}, {"field": "model"}, {"field": "accuracy"}]}};
+            vegaEmbed('#metrics_csv', spec);
+        </script>
+    </div>
+    
+</body>
+</html>

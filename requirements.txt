@@ -1,0 +1,27 @@
+# Experiment tracking
+mlflow>=2.4.0
+
+# Visualization & logging
+tensorboard>=2.12.0
+
+# Data versioning & pipelines
+dvc>=2.30.2
+
+# Core data stack
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.2.0
+matplotlib>=3.6.0
+
+# Deep learning frameworks (opsional, pilih salah satu atau keduanya)
+tensorflow>=2.12.0
+torch>=2.1.0
+
+# Storage backends (opsional, jika pakai S3/Azure/Google)
+boto3>=1.26.0        # AWS S3
+azure-storage-blob>=12.18.0
+gcsfs>=2024.5.0
+
+# Misc utilities
+pyyaml>=6.0          # config parsing
+requests>=2.31.0     # HTTP clients
