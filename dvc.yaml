@@ -50,3 +50,5 @@ stages:
     metrics:
       - metrics.json:
           cache: false
+      - metrics.csv:
+          cache: false
